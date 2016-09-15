@@ -1,0 +1,32 @@
+debug: false
+enable_average_player_level: true
+mobs:
+ default:
+  level:
+   max: 100
+   distance_interval: 200
+   range: 5
+  damage_multiplier:
+   max: 4
+   min: 0.5
+  health_multiplier:
+   max: 5
+   min: 0.5
+  speed_multiplier:
+   max: 1.5
+   min: 0.5
+  follow_range_multiplier:
+   max: 2
+   min: 0.5
+
+
+# blocked_mobs:
+# - name
+# - name
+# - name
+#
+#
+blocked_mobs:
+ - wither
+ - giant
+ - iron_golem

@@ -1,0 +1,12 @@
+main: lowbrain.mobs.main.Main
+name: LowbrainMobs
+version: 1.0
+author: Lowbrain
+description:
+softdepend: [LowbrainCore]
+permission:
+ lbmobs.reload:
+  description: reload config
+commands:
+ lbmobs:
+  usage: /lbmobs reload

@@ -104,8 +104,12 @@ public class MobSpawnListener implements Listener {
         int maxLevel = mobSection.getInt("level.max",100);
         int levelRange = mobSection.getInt("level.range",1);
         int distanceInterval = mobSection.getInt("level.distance_interval",50);
+        boolean useModulo = getConfig().getBoolean("use_modulo", true);
 
         level = (int)((distance / distanceInterval) + 1);
+        if(useModulo){
+            level = Math.abs(level -  ((maxLevel * 2) * (int)Math.round(level / (maxLevel * 2))));
+        }
         if(levelRange > 0){
             level = randomInt(level - levelRange,level + levelRange);
         }

@@ -1,5 +1,6 @@
 debug: false
 enable_average_player_level: true
+use_modulo: true
 mobs:
  default:
   level:

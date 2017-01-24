@@ -47,5 +47,15 @@ public class Main  extends JavaPlugin {
     public Map<String,String> getBlockedMobs(){
         return this.blockedMobs;
     }
+
+    /**
+     * log message
+     * @param msg
+     */
+    public void debugInfo(Object msg){
+        if(this.getConfig().getBoolean("debug", false)){
+            this.getLogger().info("[Lowbrain Mob] : " + msg);
+        }
+    }
 }
 

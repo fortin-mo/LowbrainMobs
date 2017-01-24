@@ -8,11 +8,11 @@ mobs:
    distance_interval: 200
    range: 5
   damage_multiplier:
-   max: 4
-   min: 0.5
+   max: 2
+   min: 0.25
   health_multiplier:
-   max: 5
-   min: 0.5
+   max: 2
+   min: 0.25
   speed_multiplier:
    max: 1.5
    min: 0.5

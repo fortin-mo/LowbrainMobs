@@ -26,16 +26,24 @@ public class MobSpawnListener implements Listener {
     @EventHandler
     public void onCreatureSpawnEvent(CreatureSpawnEvent e){
 
+        plugin.debugInfo("************* Mob spawned *************");
         LivingEntity mob = e.getEntity();
 
+        plugin.debugInfo("              Type : " + mob.getName());
+
         if(plugin.getBlockedMobs().containsKey(mob.getName().toLowerCase())){
+            plugin.debugInfo("              -- Blocked");
+            plugin.debugInfo("*****************************************");
             return;
         }
 
         int mobLevel = getMobLevel(e.getEntity());
 
         ConfigurationSection mobSection = getConfig().getConfigurationSection("mobs." + mob.getName().toLowerCase());
-        if(mobSection == null) mobSection = getConfig().getConfigurationSection("mobs.default");
+        if(mobSection == null)  {
+            mobSection = getConfig().getConfigurationSection("mobs.default");
+            plugin.debugInfo("              -- using default settings");
+        }
         if(mobSection == null) return;
 
         int maxLevel = mobSection.getInt("level.max",100);
@@ -65,32 +73,60 @@ public class MobSpawnListener implements Listener {
 
     private void setMobAttackDamage(LivingEntity e, float max, float min, int level,int maxLevel){
         float value = getValue(max,min,level,maxLevel,0);
+        plugin.debugInfo("------------- Attack damage --------------");
+        plugin.debugInfo("              init : " + e.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue());
+        plugin.debugInfo("              multiplier : " + value);
+
         value = (float)e.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() * value;
         e.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(value);
+
+        plugin.debugInfo("              new : " + value);
+        plugin.debugInfo("------------- ------------- --------------");
     }
 
     private void setMobMovementSpeed(LivingEntity e, float max, float min, int level,int maxLevel){
         float value = getValue(max,min,level,maxLevel,0);
+        plugin.debugInfo("------------- Movement Speed --------------");
+        plugin.debugInfo("              init : " + e.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue());
+        plugin.debugInfo("              multiplier : " + value);
+
         value = (float)e.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue() * value;
         e.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(value);
+
+        plugin.debugInfo("              new : " + value);
+        plugin.debugInfo("------------- ------------- --------------");
     }
 
     private void setMobMaxHealth(LivingEntity e, float max, float min, int level,int maxLevel){
         float value = getValue(max,min,level,maxLevel,0);
-        value = (float)e.getMaxHealth() * value;
-        e.setMaxHealth(value);
-        e.setHealth(e.getMaxHealth());
+        plugin.debugInfo("------------- Max Health --------------");
+        plugin.debugInfo("              init : " + e.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue());
+        plugin.debugInfo("              multiplier : " + value);
+
+        value = (float)e.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue() * value;
+        e.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(value);
+        e.setHealth(e.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue());
+
+        plugin.debugInfo("              new : " + value);
+        plugin.debugInfo("------------- ------------- --------------");
     }
 
     private void setMobFollowRange(LivingEntity e, float max, float min, int level, int maxLevel){
         float value = getValue(max,min,level,maxLevel,0);
+        plugin.debugInfo("------------- Follow Range --------------");
+        plugin.debugInfo("              init : " + e.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).getBaseValue());
+        plugin.debugInfo("              multiplier : " + value);
+
         value = (float)e.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).getBaseValue() * value;
         e.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(value);
+
+        plugin.debugInfo("              new : " + value);
+        plugin.debugInfo("------------- ------------- --------------");
     }
 
     private int getMobLevel(LivingEntity e){
         int level = 0;
-
+        plugin.debugInfo("              ---- Computing Mob level ... ");
         Location spawn = e.getLocation().getWorld().getSpawnLocation();
         double x = e.getLocation().getX() - spawn.getX();
         double y = e.getLocation().getY() - spawn.getY();
@@ -126,7 +162,7 @@ public class MobSpawnListener implements Listener {
             level = 1;
         }
 
-
+        plugin.debugInfo("              Level : " + level);
         return level;
     }
 

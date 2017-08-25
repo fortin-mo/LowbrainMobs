@@ -134,8 +134,12 @@ public class MobSpawnListener implements Listener {
         double distance = Math.pow(x*x + y*y,0.5);
 
         ConfigurationSection mobSection = getConfig().getConfigurationSection("mobs." + e.getName().toLowerCase());
-        if(mobSection == null) mobSection = getConfig().getConfigurationSection("mobs.default");
-        if(mobSection == null) return level;
+
+        if(mobSection == null)
+            mobSection = getConfig().getConfigurationSection("mobs.default");
+
+        if(mobSection == null)
+            return level;
 
         int maxLevel = mobSection.getInt("level.max",100);
         int levelRange = mobSection.getInt("level.range",1);
@@ -143,24 +147,27 @@ public class MobSpawnListener implements Listener {
         boolean useModulo = getConfig().getBoolean("use_modulo", true);
 
         level = (int)((distance / distanceInterval) + 1);
-        if(useModulo){
-            level = Math.abs(level -  ((maxLevel * 2) * (int)Math.round(level / (maxLevel * 2))));
-        }
-        if(levelRange > 0){
-            level = randomInt(level - levelRange,level + levelRange);
-        }
 
-        if(plugin.lowbrainCoreEnabled && getConfig().getBoolean("enable_average_player_level")){
+        if(useModulo)
+            level = Math.abs(level -  ((maxLevel * 2) * (int)Math.round(level / (maxLevel * 2))));
+
+
+        if(levelRange > 0)
+            level = randomInt(level - levelRange,level + levelRange);
+
+
+        if(plugin.lowbrainCoreEnabled
+                && getConfig().getBoolean("enable_average_player_level")
+                && LowbrainCore.getInstance().getPlayerHandler().getList().size() > 0){
             int averageLevel = LowbrainCore.getInstance().getPlayerHandler().getAverageLevel();
 
             level = (int)(level + averageLevel / 2);
         }
 
-        if(level > maxLevel){
+        if(level > maxLevel)
             level = maxLevel;
-        } else if (level <= 0){
+        else if (level <= 0)
             level = 1;
-        }
 
         plugin.debugInfo("              Level : " + level);
         return level;

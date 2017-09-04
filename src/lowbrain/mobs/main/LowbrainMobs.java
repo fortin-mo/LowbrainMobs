@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Moofy on 28/08/2016.
  */
-public class Main  extends JavaPlugin {
+public class LowbrainMobs extends JavaPlugin {
 
     public static boolean lowbrainCoreEnabled;
 
@@ -26,18 +26,18 @@ public class Main  extends JavaPlugin {
         saveDefaultConfig();
 
         List<String> blockedList = getConfig().getStringList("blocked_mobs");
-        for (String k :
-                blockedList) {
+        for (String k : blockedList)
             blockedMobs.put(k,k);
-        }
+
 
         lowbrainCoreEnabled = Bukkit.getPluginManager().isPluginEnabled("LowbrainCore");
-        if(lowbrainCoreEnabled){
+
+        if(lowbrainCoreEnabled)
             LowbrainCore.getInstance().useLowbrainMoblevel = true;
-        }
+
         this.getCommand("lbmobs").setExecutor(new CommandHandler(this));
         getServer().getPluginManager().registerEvents(new MobSpawnListener(this), this);
-        this.getLogger().info("[LowbrainMobs] " + getDescription().getVersion() + " enabled!");
+        this.getLogger().info(getDescription().getVersion() + " enabled!");
     }
     @Override
     public void onDisable() {
@@ -53,9 +53,9 @@ public class Main  extends JavaPlugin {
      * @param msg
      */
     public void debugInfo(Object msg){
-        if(this.getConfig().getBoolean("debug", false)){
-            this.getLogger().info("[Lowbrain Mob] : " + msg);
-        }
+        if(this.getConfig().getBoolean("debug", false))
+            this.getLogger().info("" + msg);
+
     }
 }
 

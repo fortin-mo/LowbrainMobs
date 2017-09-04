@@ -1,6 +1,13 @@
 debug: false
+
+# only works if LowbrainCore is installed
 enable_average_player_level: true
+
+# use modulo function to generate mob levels
 use_modulo: true
+
+# define per mob level behaviour
+# default will be apply on each mob not defined here
 mobs:
  default:
   level:

@@ -1,8 +1,6 @@
 package lowbrain.mobs.main;
 
-import jdk.nashorn.internal.runtime.ECMAException;
 import lowbrain.core.main.LowbrainCore;
-import lowbrain.core.rpg.LowbrainPlayer;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
@@ -17,9 +15,9 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
  */
 public class MobSpawnListener implements Listener {
 
-    public static Main plugin;
+    public static LowbrainMobs plugin;
 
-    public MobSpawnListener(Main instance) {
+    public MobSpawnListener(LowbrainMobs instance) {
         plugin = instance;
     }
 

@@ -1,4 +1,4 @@
-main: lowbrain.mobs.main.Main
+main: lowbrain.mobs.main.LowbrainMobs
 name: LowbrainMobs
 version: 0.0.1
 author: Lowbrain

@@ -3,6 +3,7 @@ name: LowbrainMobs
 version: 0.0.1
 author: Lowbrain
 description:
+depend: [LowbrainLibrary]
 softdepend: [LowbrainCore]
 permission:
  lbmobs.reload:

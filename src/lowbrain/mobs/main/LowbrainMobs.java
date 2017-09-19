@@ -29,7 +29,6 @@ public class LowbrainMobs extends JavaPlugin {
         for (String k : blockedList)
             blockedMobs.put(k,k);
 
-
         lowbrainCoreEnabled = Bukkit.getPluginManager().isPluginEnabled("LowbrainCore");
 
         if(lowbrainCoreEnabled)

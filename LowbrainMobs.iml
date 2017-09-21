@@ -7,7 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="spigot-1.12.1" level="project" />
     <orderEntry type="module" module-name="LowbrainCore" />
+    <orderEntry type="library" name="spigot-1.12.2" level="project" />
+    <orderEntry type="module" module-name="LowbrainLibrary" />
   </component>
 </module>

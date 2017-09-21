@@ -1,7 +1,10 @@
 package lowbrain.mobs.main;
 
 import lowbrain.core.main.LowbrainCore;
+import lowbrain.library.command.Command;
+import lowbrain.library.main.LowbrainLibrary;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -34,7 +37,26 @@ public class LowbrainMobs extends JavaPlugin {
         if(lowbrainCoreEnabled)
             LowbrainCore.getInstance().useLowbrainMoblevel = true;
 
-        this.getCommand("lbmobs").setExecutor(new CommandHandler(this));
+        Command sub;
+        Command onReload;
+        LowbrainLibrary.getInstance().getBaseCmdHandler().register("mobs",sub = new Command("mobs") {
+            @Override
+            public CommandStatus execute(CommandSender who, String[] args, String cmd) {
+                who.sendMessage("/lb mobs reload");
+                return CommandStatus.VALID;
+            }
+        });
+
+        sub.register("reload",onReload = new Command("reload") {
+            @Override
+            public CommandStatus execute(CommandSender who, String[] args, String cmd) {
+                reloadConfig();
+                return CommandStatus.VALID;
+            }
+        });
+        onReload.addPermission("lb.mobs.reload");
+
+
         getServer().getPluginManager().registerEvents(new MobSpawnListener(this), this);
         this.getLogger().info(getDescription().getVersion() + " enabled!");
     }

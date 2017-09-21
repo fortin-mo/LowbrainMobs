@@ -6,8 +6,6 @@ description:
 depend: [LowbrainLibrary]
 softdepend: [LowbrainCore]
 permission:
- lbmobs.reload:
+ lb.mobs.reload:
   description: reload config
-commands:
- lbmobs:
-  usage: /lbmobs reload
+  default: op

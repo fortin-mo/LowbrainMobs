@@ -19,7 +19,7 @@ mobs:
    min: 0.25
   health_multiplier:
    max: 2
-   min: 0.25
+   min: 0.1
   speed_multiplier:
    max: 1.5
    min: 0.5
